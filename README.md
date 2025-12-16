@@ -29,7 +29,7 @@ Skapa en ny route ```/paintings``` och visa konstverken som laddats upp där.
    Serving ./public directory if it exists
 
    Endpoints:
-   http://lo
+   http://localhost:3000
    ```
 4. Sparade konstverk kommer att sparas i filen ```db.json```
 
@@ -109,7 +109,7 @@ export default function form() {
 
 ## 5. Hämta och skapa konstverk
 
-Lägg följande kod i ```/lib/api.ts``` och ***skriv färdigt funktionerna för GET OCH POST och ```interface Painting```***
+Lägg följande kod i ```/lib/api.ts``` och **skriv färdigt funktionerna för GET OCH POST och ```interface Painting```**
 
 
 ```ts
