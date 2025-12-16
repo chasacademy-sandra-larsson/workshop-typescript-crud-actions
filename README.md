@@ -5,9 +5,9 @@ En övning på API-anrop med ett tillhörande användargränssnitt i form av ett
 ## 🛀🏼 1. Projektstruktur "Simple SPA"
 
 Ni ska utgå från en enklare Singe Page Application (SPA) skriven i Typescript, Vite och utan ramverk. 
-Utgå från [detta repo](https://github.com/chasacademy-sandra-larsson/simple-spa-ts) och utforska tillsammans i teamet hur projektstrukturen är uppbyggt.
+Utgå från [detta repo](https://github.com/chasacademy-sandra-larsson/simple-spa-ts) och utforska tillsammans i teamet hur projektstrukturen är uppbyggd.
 
-Målet är att ni ska ha en ny route ```/paintings``` och där ska de konstverk som laddats upp visas. Använd bild-url-adress från exempelvis [Unsplash](https://unsplash.com/) 
+Målet är att ni ska ha en ny route ```/paintings``` och där ska de konstverk som laddats upp visas. I formuläret laddar man upp en bild-url-adress från exempelvis [Unsplash](https://unsplash.com/) 
 
 ## 🫙 2. Installera och använda JSON Server som Mock API
 
