@@ -128,7 +128,7 @@ export const addPainting = async (data: Painting) =>
   post<Painting>(`${BASE_URL}/paintings`, data);
 ```
 
-## 6. Uppdate Store-klassen
+## 6. Uppdatera Store-klassen
 
 Ta bort befintligt kod i ```store.ts``` så att globalt state nu istället hanterar att lägga till och ta bort konstmverk.
 
@@ -181,3 +181,7 @@ export const getPaintings = store.getPaintings.bind(store);
 export const setPainting = store.setPainting.bind(store);
 export const setRenderCallback = store.setRenderCallback.bind(store);
 ```
+
+## 7. Rendera sparade konstverk i ```/paintings````
+
+Skriv klart en vy/sida som renderar ut alla bilder, d.v.s genom att hämta bildadresserna genom funktionen ```getPaintings()```
