@@ -11,7 +11,7 @@ Skapa en ny route ```/paintings``` och visa konstverken som laddats upp där.
 
 ## 🫙 2. Installera och använda JSON Server som Mock API
 
-1. Om du inte installerat JSON Server gör du det med `npm install -g json-server`
+1. Installera JSON Server med `npm install -g json-server`
 2. Kör sedan `json-server --watch db.json` för att starta en lokal server med filen `db.json` som mock-databas
 3. Responsen från terminalen borde se ungefär såhär ut:
 
@@ -31,9 +31,9 @@ Skapa en ny route ```/paintings``` och visa konstverken som laddats upp där.
    Endpoints:
    http://lo
    ```
-4. Öppna db.json för att se sparade konstverk
+4. Sparade konstverk kommer att sparas i filen ```db.json```
 
-## 3. Lägg till en komponent ```ìnput.ts``` 
+## 3. Lägg till en komponent ```input.ts``` 
 
 I projektstrukturen under ```/components```
 
@@ -105,9 +105,79 @@ export default function form() {
   
   return form;
 }
+````
+
+## 5. Hämta och skapa konstverk
+
+Lägg följande kod i ```/lib/api.ts``` och ***skriv färdigt funktionerna för GET OCH POST och ```interface Painting```***
+
+
+```ts
+const BASE_URL = "http://localhost:3000";
+
+export interface Painting {}
+
+const get = async <T>(url: string) => {};
+
+const post = async <T>(url: string, data: T) => {};
+
+export const getPaintings = async () =>
+  get<Painting[]>(`${BASE_URL}/paintings`);
+
+export const addPainting = async (data: Painting) =>
+  post<Painting>(`${BASE_URL}/paintings`, data);
 ```
 
+## 6. Uppdate Store-klassen
 
+Ta bort befintligt kod i ```store.ts``` så att globalt state nu istället hanterar att lägga till och ta bort konstmverk.
 
+```ts
+import {
+  addPainting,
+  getPaintings as getPaintingsRequest,
+  type Painting,
+} from "./api";
 
+class Store {
+  renderCallback: () => void;
 
+  constructor() {
+    this.renderCallback = () => {};
+  }
+
+  async getPaintings() {
+    try {
+      const paintings = await getPaintingsRequest();
+      return paintings;
+    } catch (error) {
+      return [];
+    }
+  }
+
+  async setPainting(painting: Painting) {
+    try {
+      await addPainting(painting);
+      this.triggerRender();
+    } catch (error) {
+      console.error("Failed to add painting:", error);
+      throw error;
+    }
+  }
+
+  setRenderCallback(renderApp: () => void) {
+    this.renderCallback = renderApp;
+  }
+
+  triggerRender() {
+    if (this.renderCallback) {
+      this.renderCallback();
+    }
+  }
+}
+const store = new Store();
+
+export const getPaintings = store.getPaintings.bind(store);
+export const setPainting = store.setPainting.bind(store);
+export const setRenderCallback = store.setRenderCallback.bind(store);
+```
