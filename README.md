@@ -12,8 +12,16 @@ Målet är att ni ska ha en ny route ```/paintings``` och där ska de konstverk 
 ## 🫙 2. Installera och använda JSON Server som Mock API
 
 1. Installera JSON Server med `npm install -g json-server`
-2. Kör sedan `json-server --watch db.json` för att starta en lokal server med filen `db.json` som mock-databas
-3. Responsen från terminalen borde se ungefär såhär ut:
+
+2. Skapa en fil ```db.json``` i roten av projektet med denna startkod:
+```
+{
+  "paintings": []
+}
+```
+3. Kör sedan `json-server --watch db.json` för att starta en lokal server med filen `db.json` som mock-databas
+
+4. Responsen från terminalen borde se ungefär såhär ut:
 
    ```js
    JSON Server started on PORT :3000
@@ -33,7 +41,7 @@ Målet är att ni ska ha en ny route ```/paintings``` och där ska de konstverk 
    ```
 4. Sparade konstverk kommer att sparas i filen ```db.json```
 
-## 3. Lägg till en komponent ```input.ts``` 
+## 3. Lägg till en komponent ```input.ts```
 
 I projektstrukturen under ```/components```
 
@@ -59,7 +67,7 @@ export default function input({
 }
 ````
 
-## 4. Lägg till ett formulär i vyn 
+## 4. Lägg till ett formulär i en ny route ```/new```
 
 ```ts
 import input from "../components/input";
@@ -122,10 +130,10 @@ const get = async <T>(url: string) => {};
 const post = async <T>(url: string, data: T) => {};
 
 export const getPaintings = async () =>
-  get<Painting[]>(`${BASE_URL}/paintings`);
+  get<Painting[]>("/paintings");
 
 export const addPainting = async (data: Painting) =>
-  post<Painting>(`${BASE_URL}/paintings`, data);
+  post<Painting>("/paintings", data);
 ```
 
 ## 6. Uppdatera Store-klassen
@@ -182,6 +190,10 @@ export const setPainting = store.setPainting.bind(store);
 export const setRenderCallback = store.setRenderCallback.bind(store);
 ```
 
-## 7. Rendera sparade konstverk i ```/paintings````
+## 7. Lägg till konstverk på routen```/new```
+
+Skapa en ny route ```/new``` där formuläret visas för att kunna lägga till ett nytt konstverk med Store-klassen ```setPainting()```
+
+## 8. Visa alla konstverk i ```/paintings```
 
 Skriv klart en vy/sida som renderar ut alla bilder, d.v.s genom att hämta bildadresserna genom funktionen ```getPaintings()```
