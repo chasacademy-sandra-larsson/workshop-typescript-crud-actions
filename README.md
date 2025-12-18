@@ -43,7 +43,7 @@ Målet är att ni ska ha en ny route ```/paintings``` och där ska de konstverk 
 
 ## 3. Lägg till en komponent ```input.ts```
 
-I projektstrukturen under ```/components```
+I projektstrukturen under ```src/components```
 
 ```ts
 export default function input({
@@ -68,11 +68,11 @@ export default function input({
 ````
 
 ## 4. Lägg till ett formulär i en ny route ```/new```
-
+I projektstrukturen under ```src/views``` skapa en folder `new` och filen `index.ts`
 ```ts
-import input from "../components/input";
-import { type Painting } from "../libs/api";
-import { setPainting } from "../libs/store";
+import input from "../../components/input";
+import { type Painting } from "../../lib/api";
+import { setPainting } from "../../lib/store";
 
 export default function form() {
   const form = document.createElement("form");
